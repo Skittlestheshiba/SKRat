@@ -1,7 +1,7 @@
 import colors
 import sys
 import os
-
+import server
 
 def menu():
     print(colors.blue('|--SKRat--|') + '\n \n \n \n \n \n \n' + colors.blue('1) Option 1  2) Option 2 E) Exit'))
@@ -11,7 +11,7 @@ selection = input(colors.blue('>'))
 menu()
 if selection == '1':
     print(colors.red('1'))
-
+    
 elif selection == '2':
     print(colors.red('2'))
 
