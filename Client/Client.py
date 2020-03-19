@@ -13,7 +13,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connection = False
 lhost = ""
 lport = 42069
-operateSystem = ''
+
 
 #Functions
 def sendMessage(msg):

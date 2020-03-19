@@ -33,19 +33,25 @@ def cleanUpResponse(inputStr):
          outstring = outstring.replace(i, '\n')
      else:
          outstring = outstring.replace(i, '')
+     outstring = outstring.replace('b', '', 1)
+
+ print(outstring)
+
+
+
 
 #Start server.
-print(colors.blue('Starting Server...'))
+print(colors.cyan('Starting Server...'))
 serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 serversocket.bind((lHost, lport))
-print(colors.blue('Socket Bound...'))
+print(colors.red('Socket Bound...'))
 serversocket.listen(1)
-print(colors.blue('Listening...'))
+print(colors.yellow('Listening...'))
 
 #Accept server connection
 clientsocket, address = serversocket.accept()
 clearScreen()
-print(colors.blue('Connection recieved, ' + str(address)))
+print(colors.green('Connection recieved, ' + str(address)))
 
 #While connected, Take commands, check for help message, or send to client.
 while True:
@@ -75,6 +81,6 @@ while True:
     #Decode, clean, and print reponse to screen.
     decodedFromClient = fromClient.decode("UTF-8")
     outToScreen = cleanUpResponse(decodedFromClient)
-    print(outToScreen)
+
 
 #Written by Skittles_
